@@ -42,6 +42,8 @@ async function loadReports() {
       `;
 
       grid.appendChild(card);
+
+      io.observe(card);
     });
   } catch (e) {
     console.error("読み込み失敗", e);
