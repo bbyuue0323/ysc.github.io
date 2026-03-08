@@ -13,7 +13,7 @@ async function loadReports() {
 
     data.forEach((row) => {
       const card = document.createElement("div");
-      card.className = "report-card reveal";
+      card.className = "report-card reveal visible";
       card.dataset.cat = row.category.toLowerCase();
 
       let tagClass = "";
