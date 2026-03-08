@@ -11,6 +11,16 @@ async function loadReports() {
 
     grid.innerHTML = "";
 
+    // IntersectionObserver（動的生成カード用）
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
     data.forEach((row) => {
       const card = document.createElement("div");
       card.className = "report-card reveal";
@@ -42,7 +52,9 @@ async function loadReports() {
       `;
 
       grid.appendChild(card);
+      io.observe(card);
     });
+
   } catch (e) {
     console.error("読み込み失敗", e);
   }
